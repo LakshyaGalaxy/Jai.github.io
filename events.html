@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events - BAP</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:Arial,sans-serif;
+
+            background:
+                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.65)),
+                url('img/event.png');
+
+            background-size:cover;
+            background-position:center;
+
+            color:white;
+
+            min-height:100vh;
+
+        }
+
+        .top-navbar{
+
+            position:absolute;
+
+            top:0;
+            left:0;
+
+            width:100%;
+
+            padding:18px 40px;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            z-index:1000;
+
+        }
+
+        .nav-left{
+
+            display:flex;
+            align-items:center;
+
+    text-decoration:none;
+
+    color:white;
+            gap:15px;
+
+        }
+
+        .nav-left img{
+            width:55px;
+        }
+
+        .nav-left h2{
+
+            font-size:22px;
+            font-weight:800;
+
+        }
+
+        .nav-right{
+
+            display:flex;
+            gap:28px;
+
+        }
+
+        .nav-right a{
+
+            color:white;
+            text-decoration:none;
+
+            font-size:15px;
+            font-weight:700;
+
+        }
+
+        .nav-right a:hover{
+            color:#ff6f00;
+        }
+
+        .hero{
+
+            padding-top:140px;
+
+            text-align:center;
+
+        }
+
+        .hero h1{
+
+            font-size:82px;
+            font-weight:900;
+
+            text-transform:uppercase;
+
+        }
+
+        .hero h1 span{
+            color:#ff6f00;
+        }
+
+        .hero p{
+
+            margin-top:18px;
+
+            font-size:20px;
+
+            color:#ddd;
+
+        }
+
+        .events-container{
+
+            width:min(1300px, calc(100% - 50px));
+
+            margin:70px auto;
+
+            display:grid;
+
+            grid-template-columns:repeat(3, 1fr);
+
+            gap:30px;
+
+        }
+
+        .event-card{
+
+            background:rgba(255,255,255,.08);
+
+            backdrop-filter:blur(12px);
+
+            border:1px solid rgba(255,255,255,.12);
+
+            border-radius:24px;
+
+            overflow:hidden;
+
+            transition:.4s;
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,.25);
+
+        }
+
+        .event-card:hover{
+
+            transform:translateY(-10px);
+
+        }
+
+        .event-image{
+
+            height:260px;
+
+            overflow:hidden;
+
+        }
+
+        .event-image img{
+
+            width:100%;
+            height:100%;
+
+            object-fit:cover;
+
+            transition:.6s;
+
+        }
+
+        .event-card:hover img{
+
+            transform:scale(1.08);
+
+        }
+
+        .event-content{
+
+            padding:26px;
+
+        }
+
+        .event-date{
+
+            display:inline-block;
+
+            background:#ff6f00;
+
+            color:white;
+
+            padding:8px 16px;
+
+            border-radius:40px;
+
+            font-size:14px;
+            font-weight:700;
+
+            margin-bottom:18px;
+
+        }
+
+        .event-content h3{
+
+            font-size:30px;
+            font-weight:900;
+
+            margin-bottom:14px;
+
+        }
+
+        .event-content p{
+
+            color:#ddd;
+
+            line-height:1.7;
+
+            margin-bottom:24px;
+
+        }
+
+        .event-meta{
+
+            display:flex;
+            flex-direction:column;
+
+            gap:12px;
+
+            margin-bottom:24px;
+
+        }
+
+        .event-meta div{
+
+            display:flex;
+            align-items:center;
+
+            gap:12px;
+
+            color:#eee;
+
+        }
+
+        .event-btn{
+
+            display:inline-flex;
+            justify-content:center;
+            align-items:center;
+
+            width:100%;
+            height:54px;
+
+            background:#ff6f00;
+
+            color:white;
+
+            border-radius:12px;
+
+            text-decoration:none;
+
+            font-weight:800;
+
+            transition:.3s;
+
+        }
+
+        .event-btn:hover{
+
+            background:white;
+            color:#111;
+
+        }
+
+        @media(max-width:1100px){
+
+            .events-container{
+
+                grid-template-columns:1fr 1fr;
+
+            }
+
+        }
+
+        @media(max-width:700px){
+
+            .events-container{
+
+                grid-template-columns:1fr;
+
+            }
+
+            .hero h1{
+
+                font-size:52px;
+
+            }
+
+            .nav-right{
+                display:none;
+            }
+
+        }
+        .footer{
+
+    background:#050505;
+
+    padding:80px 0 25px;
+
+    margin-top:120px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+}
+
+.footer-container{
+
+    width:min(1400px, calc(100% - 50px));
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:50px;
+
+    padding-bottom:50px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer-box h2{
+
+    color:#ff6f00;
+
+    font-size:38px;
+    font-weight:900;
+
+    margin-bottom:24px;
+
+}
+
+.footer-box p{
+
+    color:#d4d4d4;
+
+    line-height:1.9;
+
+    font-size:17px;
+
+}
+
+.footer-box a{
+
+    display:block;
+
+    color:#e5e5e5;
+
+    text-decoration:none;
+
+    margin-bottom:16px;
+
+    transition:.3s;
+
+    font-size:17px;
+
+}
+
+.footer-box a:hover{
+
+    color:#ff6f00;
+
+    transform:translateX(6px);
+
+}
+
+.social-icons{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.social-icons a{
+
+    width:52px;
+    height:52px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:12px;
+
+    font-size:20px;
+
+}
+
+.social-icons a:hover{
+
+    background:#ff6f00;
+
+    border-color:#ff6f00;
+
+    color:white;
+
+    transform:translateY(-4px);
+
+}
+
+.footer-bottom{
+
+    text-align:center;
+
+    padding-top:28px;
+
+    color:#aaa;
+
+    font-size:16px;
+
+}
+
+@media(max-width:1000px){
+
+    .footer-container{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .footer-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="top-navbar">
+
+        <a href="index.html" class="nav-left">
+
+            <img src="img/logo.png" alt="">
+
+            <h2>BHARATIYA AAM PARTY</h2>
+
+        </a>
+
+        <div class="nav-right">
+
+
+            <a href="resources.html">MEDIA RESOURCES</a>
+
+            <a href="baplive.html">BAAP LIVE</a>
+            
+            <a href="join.html">JOIN BAP</a>
+            
+
+            
+
+        </div>
+
+    </div>
+
+    <div class="hero">
+
+        <h1>
+            Upcoming <span>Events</span>
+        </h1>
+
+        <p>
+            Join the movement and participate in upcoming campaigns,
+            rallies and youth programs.
+        </p>
+
+    </div>
+
+    <div class="events-container">
+
+        <div class="event-card">
+
+            <div class="event-image">
+
+                <img src="img/power.png" alt="">
+
+            </div>
+
+            <div class="event-content">
+
+                <div class="event-date">
+                    24 MAY 2026
+                </div>
+
+                <h3>
+                    Youth Rally Jaipur
+                </h3>
+
+                <p>
+                    Massive youth gathering focused on employment,
+                    innovation and future opportunities.
+                </p>
+
+                <div class="event-meta">
+
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Jaipur, Rajasthan
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        11:00 AM
+                    </div>
+
+                </div>
+
+                <a href="#" class="event-btn">
+                    REGISTER NOW
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="event-card">
+
+            <div class="event-image">
+
+                <img src="img/conference.png" alt="">
+
+            </div>
+
+            <div class="event-content">
+
+                <div class="event-date">
+                    28 MAY 2026
+                </div>
+
+                <h3>
+                    Farmers Conference
+                </h3>
+
+                <p>
+                    Discussion on agriculture growth,
+                    irrigation and farmer welfare policies.
+                </p>
+
+                <div class="event-meta">
+
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Jodhpur, Rajasthan
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        2:00 PM
+                    </div>
+
+                </div>
+
+                <a href="#" class="event-btn">
+                    REGISTER NOW
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="event-card">
+
+            <div class="event-image">
+
+                <img src="img/townhall.png" alt="">
+
+            </div>
+
+            <div class="event-content">
+
+                <div class="event-date">
+                    02 JUNE 2026
+                </div>
+
+                <h3>
+                    Public Townhall
+                </h3>
+
+                <p>
+                    Meet leaders directly and discuss local
+                    development and public issues.
+                </p>
+
+                <div class="event-meta">
+
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Delhi
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        5:30 PM
+                    </div>
+
+                </div>
+
+                <a href="#" class="event-btn">
+                    REGISTER NOW
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+    <footer class="footer">
+    
+        <div class="footer-container">
+    
+            <div class="footer-box">
+    
+                <h2>BAP</h2>
+    
+                <p>
+                    Bhartiya Aam Party is committed to building
+                    a strong, transparent, and progressive
+                    nation for all citizens.
+                </p>
+    
+            </div>
+    
+    
+    
+    
+    
+            <div class="footer-box">
+    
+                <h2>Quick Links</h2>
+    
+                <a href="index.html">Home</a>
+    
+                <a href="join.html">Join BAP</a>
+    
+                <a href="events.html">Events</a>
+    
+                <a href="resources.html">Media</a>
+    
+                <a href="baplive.html">BAP Live</a>
+    
+            </div>
+    
+    
+    
+    
+    
+            <div class="footer-box">
+    
+                <h2>Contact</h2>
+    
+                <p>Email: Nannu85448@gmail.com</p>
+                
+                <p>Phone: +91 9983537555</p>
+    
+                <p>Address: Jaipur, India</p>
+    
+            </div>
+    
+    
+    
+    
+    
+            <div class="footer-box">
+    
+                <h2>Follow Us</h2>
+    
+                <div class="social-icons">
+    
+                    <a href="https://www.facebook.com/jai.saini.10004">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    <a href="https://x.com/jaisaini9611">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/jaii_sainii3335/">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@jaisaini3261">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+    
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    
+    
+    
+    
+        <div class="footer-bottom">
+    
+            © 2026 BAP | All Rights Reserved
+    
+        </div>
+    
+    </footer>
+    
+
+</body>
+
+</html>

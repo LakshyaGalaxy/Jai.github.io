@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Resources - BAP</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:Arial,sans-serif;
+
+            background:
+                linear-gradient(rgba(0,0,0,.7),
+                rgba(0,0,0,.85)),
+                url('img/media-bg.jpg');
+
+            background-size:cover;
+            background-position:center;
+
+            min-height:100vh;
+
+            color:white;
+
+            overflow-x:hidden;
+
+        }
+
+        .top-navbar{
+
+            position:fixed;
+
+            top:0;
+            left:0;
+
+            width:100%;
+
+            padding:16px 42px;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            z-index:1000;
+
+            background:transparent;
+
+            backdrop-filter:none;
+
+            border-bottom:0;
+
+        }
+
+        .nav-left{
+
+            display:flex;
+            align-items:center;
+
+            gap:14px;
+            text-decoration:none;
+
+    color:white;
+
+        }
+
+        .nav-left img{
+            width:54px;
+        }
+
+        .nav-left h2{
+
+            font-size:24px;
+            font-weight:900;
+
+        }
+
+        .nav-right{
+
+            display:flex;
+            align-items:center;
+            gap:28px;
+
+        }
+
+        .nav-right a{
+
+            color:white;
+            text-decoration:none;
+            font-size:15px;
+            font-weight:800;
+            text-transform:uppercase;
+            transition:.3s;
+
+        }
+
+        .nav-right a:hover{
+            color:#ff6f00;
+        }
+
+        .hero{
+
+            padding-top:150px;
+
+            text-align:center;
+
+            width:min(1000px, calc(100% - 40px));
+
+            margin:auto;
+
+        }
+
+        .hero span{
+
+            display:inline-block;
+
+            padding:12px 22px;
+
+            border-radius:40px;
+
+            background:rgba(255,111,0,.12);
+
+            border:1px solid rgba(255,111,0,.25);
+
+            color:#ff6f00;
+
+            font-weight:800;
+
+            margin-bottom:26px;
+
+        }
+
+        .hero h1{
+
+            font-size:110px;
+            font-weight:900;
+
+            line-height:.9;
+
+            text-transform:uppercase;
+
+            margin-bottom:28px;
+
+        }
+
+        .hero h1 span{
+
+            background:none;
+            border:none;
+
+            padding:0;
+
+            color:#ff6f00;
+
+        }
+
+        .hero p{
+
+            font-size:22px;
+
+            line-height:1.8;
+
+            color:#ddd;
+
+            max-width:780px;
+
+            margin:auto;
+
+        }
+
+        .resources-grid{
+
+            width:min(1400px, calc(100% - 50px));
+
+            margin:90px auto;
+
+            display:grid;
+
+            grid-template-columns:repeat(3,1fr);
+
+            gap:30px;
+
+        }
+
+        .resource-card{
+
+            background:rgba(255,255,255,.06);
+
+            backdrop-filter:blur(14px);
+
+            border:1px solid rgba(255,255,255,.08);
+
+            border-radius:28px;
+
+            padding:40px 34px;
+
+            text-align:center;
+
+            transition:.4s;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.25);
+
+        }
+
+        .resource-card:hover{
+
+            transform:translateY(-10px);
+
+            border-color:rgba(255,111,0,.4);
+
+        }
+
+        .resource-icon{
+
+            width:95px;
+            height:95px;
+
+            margin:auto auto 28px;
+
+            border-radius:50%;
+
+            background:
+                linear-gradient(135deg,
+                #ff6f00,
+                #ff9f43);
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            font-size:38px;
+
+            box-shadow:
+                0 10px 30px rgba(255,111,0,.35);
+
+        }
+
+        .resource-card h3{
+
+            font-size:34px;
+            font-weight:900;
+
+            margin-bottom:18px;
+
+        }
+
+        .resource-card p{
+
+            color:#ddd;
+
+            line-height:1.8;
+
+            margin-bottom:30px;
+
+        }
+
+        .resource-btn{
+
+            display:inline-flex;
+            justify-content:center;
+            align-items:center;
+
+            width:100%;
+            height:58px;
+
+            border-radius:14px;
+
+            background:#ff6f00;
+
+            color:white;
+
+            text-decoration:none;
+
+            font-size:16px;
+            font-weight:800;
+
+            transition:.3s;
+
+        }
+
+        .resource-btn:hover{
+
+            background:white;
+            color:#111;
+
+        }
+
+        .footer-text{
+
+            text-align:center;
+
+            padding-bottom:40px;
+
+            color:#aaa;
+
+            font-size:15px;
+
+        }
+
+        @media(max-width:1100px){
+
+            .resources-grid{
+
+                grid-template-columns:1fr 1fr;
+
+            }
+
+            .hero h1{
+
+                font-size:72px;
+
+            }
+
+        }
+
+        @media(max-width:700px){
+
+            .resources-grid{
+
+                grid-template-columns:1fr;
+
+            }
+
+            .hero h1{
+
+                font-size:52px;
+
+            }
+
+            .hero p{
+
+                font-size:18px;
+
+            }
+
+            .top-navbar{
+
+                padding:14px 18px;
+
+            }
+
+            .nav-right{
+
+                display:none;
+
+            }
+
+        }
+        .footer{
+
+    background:#050505;
+
+    padding:80px 0 25px;
+
+    margin-top:120px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+}
+
+.footer-container{
+
+    width:min(1400px, calc(100% - 50px));
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:50px;
+
+    padding-bottom:50px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer-box h2{
+
+    color:#ff6f00;
+
+    font-size:38px;
+    font-weight:900;
+
+    margin-bottom:24px;
+
+}
+
+.footer-box p{
+
+    color:#d4d4d4;
+
+    line-height:1.9;
+
+    font-size:17px;
+
+}
+
+.footer-box a{
+
+    display:block;
+
+    color:#e5e5e5;
+
+    text-decoration:none;
+
+    margin-bottom:16px;
+
+    transition:.3s;
+
+    font-size:17px;
+
+}
+
+.footer-box a:hover{
+
+    color:#ff6f00;
+
+    transform:translateX(6px);
+
+}
+
+.social-icons{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.social-icons a{
+
+    width:52px;
+    height:52px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:12px;
+
+    font-size:20px;
+
+}
+
+.social-icons a:hover{
+
+    background:#ff6f00;
+
+    border-color:#ff6f00;
+
+    color:white;
+
+    transform:translateY(-4px);
+
+}
+
+.footer-bottom{
+
+    text-align:center;
+
+    padding-top:28px;
+
+    color:#aaa;
+
+    font-size:16px;
+
+}
+
+@media(max-width:1000px){
+
+    .footer-container{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .footer-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+
+    <div class="top-navbar">
+
+        <a href="index.html" class="nav-left">
+
+            <img src="img/logo.png" alt="">
+
+            <h2>BHARTIYA AAM PARTY</h2>
+
+        </a>
+
+        <div class="nav-right">
+
+            <a href="events.html">UPCOMING EVENTS</a>
+
+            <a href="baplive.html">BAP LIVE</a>
+
+            <a href="join.html">JOIN BAP</a>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <section class="hero">
+
+        <span>
+
+            OFFICIAL BAP MEDIA CENTER
+
+        </span>
+
+        <h1>
+
+            Media <span>Resources</span>
+
+        </h1>
+
+        <p>
+
+            Access official speeches, press releases,
+            campaign materials, downloadable assets,
+            social media kits and public announcements.
+
+        </p>
+
+    </section>
+
+
+
+
+
+    <section class="resources-grid">
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+
+                <i class="fa-solid fa-photo-film"></i>
+
+            </div>
+
+            <h3>
+
+                Media Gallery
+
+            </h3>
+
+            <p>
+
+                Browse official campaign photos,
+                rally visuals and press event coverage.
+
+            </p>
+
+            <a href="#" class="resource-btn">
+
+                VIEW GALLERY
+
+            </a>
+
+        </div>
+
+
+
+
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+            </div>
+
+            <h3>
+
+                Press Releases
+
+            </h3>
+
+            <p>
+
+                Read official statements,
+                announcements and leadership updates.
+
+            </p>
+
+            <a href="#" class="resource-btn">
+
+                READ NEWS
+
+            </a>
+
+        </div>
+
+
+
+
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+
+                <i class="fa-solid fa-video"></i>
+
+            </div>
+
+            <h3>
+
+                Videos & Live
+
+            </h3>
+
+            <p>
+
+                Watch speeches, campaign highlights,
+                interviews and live broadcasts.
+
+            </p>
+
+            <a href="baplive.html" class="resource-btn">
+
+                WATCH NOW
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <div class="footer-text">
+
+        © 2026 Bharatiya Aam Party • Official Media Resources
+
+    </div>
+    <footer class="footer">
+    
+        <div class="footer-container">
+    
+            <div class="footer-box">
+    
+                <h2>BAP</h2>
+    
+                <p>
+                    Bhartiya Aam Party is committed to building
+                    a strong, transparent, and progressive
+                    nation for all citizens.
+                </p>
+    
+            </div>
+    
+    
+    
+    
+    
+            <div class="footer-box">
+    
+                <h2>Quick Links</h2>
+    
+                <a href="index.html">Home</a>
+    
+                <a href="join.html">Join BAP</a>
+    
+                <a href="events.html">Events</a>
+    
+                <a href="resources.html">Media</a>
+    
+                <a href="baplive.html">BAP Live</a>
+    
+            </div>
+    
+    
+    
+    
+    
+            <div class="footer-box">
+    
+                <h2>Contact</h2>
+    
+                <p>Email: Nannu85448@gmail.com</p>
+            
+                <p>Phone: +91 9983537555</p>
+    
+                <p>Address: Jaipur, India</p>
+    
+            </div>
+    
+    
+    
+    
+    
+            <div class="footer-box">
+    
+                <h2>Follow Us</h2>
+    
+                <div class="social-icons">
+    
+                    <a href="https://www.facebook.com/jai.saini.10004">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    <a href="https://x.com/jaisaini9611">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/jaii_sainii3335/">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@jaisaini3261">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+    
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    
+    
+    
+    
+        <div class="footer-bottom">
+    
+            © 2026 BAP | All Rights Reserved
+    
+        </div>
+    
+    </footer>
+
+</body>
+
+</html>
